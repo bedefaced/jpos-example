@@ -15,6 +15,15 @@ This is example of using jPOS. In this project jPOS (with some Java classes) wor
  - channel parameters are listed in **/src/dist/deploy/40_server.xml**
  - message processing is described by the same **/src/dist/deploy/30_processors.xml** jPOS script
 
+###Build and run
+Build with Gradle (or Gradle wrapper):
+
+    gradlew installApp
+
+ and run Q2 server:
+
+    build/install/jpos-example/bin/q2
+
 ###Used jPOS Documentation
 
  - [jPOS-Project-Guide.pdf](http://jpos.org/doc/jPOS-Project-Guide.pdf)
