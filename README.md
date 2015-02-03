@@ -1,48 +1,30 @@
-## jPOS Template
+##jPOS-example
+This is example of using jPOS. In this project jPOS (with some Java classes) works as SOAP server which proxies requests to ISO-8583 processing server and as ISO-8583 processing server.
 
-Clone this project in order to create your own jPOS based application.
+###SOAP server
+ - it's a JAX-WS web service that just does mapping of SOAP fields to ISO message fields, send it to ISO-8583 server and return ISO response as SOAP response
+ - web service parameters are listed in **/src/dist/deploy/60_clientws.xml**
+ - sources in **/src/main/java/middleware/webservice/**
+ - messages are pre-processed before sending to ISO-8583 server by **/src/dist/deploy/30_processors.xml** jPOS script
+ - by default runs on **http://localhost:8000/ws/**, WSDL: **http://localhost:8000/ws/?wsdl**
+ - remote ISO-8583 server connection parameters are listed in **/src/dist/deploy/61_clientchannel.xml**
 
-We recommend that you install [Gradle](http://gradle.org/) in order to build your jPOS projects, but if you don't have it installed, you can use the Gradle wrapper scripts `gradlew` and `gradlew.bat`. In the following instructions, when we say `gradle` we really mean either your installed Gradle or one of the wrapper scripts (depending if you are on Unix or DOS based platforms).
+###ISO-8583 server
 
-### Build an eclipse project
-````
-gradle eclipse
-````
+ - it is a dummy-server, that just responses OK (response code 0 in 39 field) to any request.
+ - channel parameters are listed in **/src/dist/deploy/40_server.xml**
+ - message processing is described by the same **/src/dist/deploy/30_processors.xml** jPOS script
 
-### Build an IDEA project
-````
-gradle idea
-````
+###Used jPOS Documentation
 
-### Build your own jar
-````
-gradle jar
-````
+ - [jPOS-Project-Guide.pdf](http://jpos.org/doc/jPOS-Project-Guide.pdf)
+ - [proguide-draft.pdf](http://jpos.org/doc/proguide-draft.pdf)
+ - [jPOS-EE.pdf](http://jpos.org/doc/jPOS-EE.pdf)
+ - [jPOS Blog](http://jpos.org/blog/)
+ - [jPOS Google group](http://markmail.org/search/?q=com.googlegroups.jpos-users)
 
-### Check the jPOS version
-````
-gradle version
-````
+###Remarks
+Since jPOS runs as standalone Q2 server, it is possible to update message processors (or any other xml's) «on-the-fly», while jPOS is running.
 
-### Create a distribution of your application
-````
-gradle dist
-````
-This creates a tar gzipped file in the `build/distributions` directory.
-
-### Install application in 'build/install' directory
-````
-gradle installApp
-````
-Installs application in `build/install` with everything you need to run jPOS. Once the directory is created, you can `cd build/install` and call `java -jar your-project-version.jar` or the `bin/q2` (or `q2.bat`) script available in the `bin` directory.
-
-### Generate an install a Maven artifact
-````
-gradle install
-````
-
-### List available Gradle tasks
-````
-gradle tasks
-````
-
+### jPOS-template
+This project is based on [jPOS Template](https://github.com/jpos/jPOS-template/blob/master/README.md). 
