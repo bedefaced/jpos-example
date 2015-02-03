@@ -1,0 +1,14 @@
+<qserver name="isodummyserver" logger="Q2" realm="isodummyserver">
+	<attr name="port" type="java.lang.Integer">1121</attr>
+	<channel realm="server-channel" logger="Q2" class="org.jpos.iso.channel.XMLChannel" 
+		packager="org.jpos.iso.packager.XMLPackager">
+	<!--
+	You can set your packager config xml by:
+		<property name="packager-config" value="path/to/your/packager.xml" /> 
+	-->
+	</channel>
+	<request-listener class="middleware.Server" logger="Q2" realm="request-listener">
+	</request-listener>
+	<in>serverchannel-in</in>
+	<out>serverchannel-out</out>
+</qserver>

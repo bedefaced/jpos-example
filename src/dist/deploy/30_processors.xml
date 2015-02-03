@@ -1,0 +1,64 @@
+<script>
+import org.jpos.iso.ISOMsg;
+import org.jpos.util.NameRegistrar;
+import org.jpos.iso.ISODate;
+
+import middleware.MessageProcessor;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/* server processor */
+public class ServerProcessor implements MessageProcessor {
+
+    public ISOMsg process(ISOMsg message) {
+	ISOMsg result = (ISOMsg) message.clone();
+	result.setResponseMTI();
+	result.set(39, "00");
+
+	return result;
+    }
+
+}
+
+ServerProcessor serverprocessor = new ServerProcessor();
+NameRegistrar.register("serverprocessor", serverprocessor);
+
+/* client preprocessor */
+public class MessagePreProcessor implements MessageProcessor {
+
+    public ISOMsg process(ISOMsg message) {
+	ISOMsg result = (ISOMsg) message.clone();
+	Date date = new Date();
+
+	if (message.getString("11") == null) {
+	    /* random trace audit number */
+	    String part1 = new StringBuilder(String.valueOf(date.getTime())).reverse().substring(0, 2);
+	    String part2 = String.valueOf(Math.random()).substring(2, 4);
+	    result.set(11, part1 + part2);
+	}
+
+	if (message.getString("37") == null) {
+	    result.set(37, result.getString(11));
+	}
+
+	if (message.getString("7") == null) {
+	    result.set(7, ISODate.getDateTime(date));
+	}
+
+	if (message.getString("12") == null) {
+	    result.set(12, ISODate.getTime(date));
+	}
+
+	if (message.getString("13") == null) {
+	    result.set(13, ISODate.getDate(date));
+	}
+
+	return result;
+    }
+
+}
+
+MessagePreProcessor preprocessor = new MessagePreProcessor();
+NameRegistrar.register("preprocessor", preprocessor);
+</script>

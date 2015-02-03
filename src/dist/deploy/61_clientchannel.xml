@@ -1,0 +1,10 @@
+<channel-adaptor name="clientchannel" class="org.jpos.q2.iso.ChannelAdaptor" logger="Q2"> 
+	<channel class="org.jpos.iso.channel.XMLChannel" realm="client-channel" logger="Q2" 
+		packager="org.jpos.iso.packager.XMLPackager"> 
+		<property name="host" value="127.0.0.1" /> 
+		<property name="port" value="1121" /> 
+	</channel>
+<in>clientmux-out</in>
+<out>clientchannel-out</out>
+<reconnect-delay>5000</reconnect-delay> 
+</channel-adaptor> 

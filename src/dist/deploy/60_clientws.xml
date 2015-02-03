@@ -1,0 +1,5 @@
+<qbean name="proxy" logger="Q2" realm="middleware" class="middleware.Proxy">
+	<property name="webserviceThreads" value="10" />
+	<property name="webservicePort" value="8000" />
+	<property name="transactionTimeout" value="10000" />
+</qbean>
