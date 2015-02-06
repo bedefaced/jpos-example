@@ -31,6 +31,8 @@ Build with Gradle (or Gradle wrapper):
  - [jPOS-EE.pdf](http://jpos.org/doc/jPOS-EE.pdf)
  - [jPOS Blog](http://jpos.org/blog/)
  - [jPOS Google group](http://markmail.org/search/?q=com.googlegroups.jpos-users)
+ - [jPOS Server](http://didikhari.web.id/java/jpos-server-forward-request-message-to-another-server/)
+ - [jPOS keep-alive](https://groups.google.com/forum/#!topic/jpos-users/jxA2MGdqaaA)
 
 ###Remarks
 Since jPOS runs as standalone Q2 server, it is possible to update message processors (or any other xml's) «on-the-fly», while jPOS is running.
